@@ -1,0 +1,108 @@
+<?php
+/*
+Template Name: Divina Acontece
+*/
+ 
+    // calling the header.php
+    get_header();
+
+    // action hook for placing content above #container
+    thematic_abovecontainer();
+?>
+        <div id="destaque-interna"><img src="http://www.chabrasil.com.br/divina/wp-content/themes/Divina-2012/images/destaque-ensino.png" title="Divina Acontece"/> </div>
+  	<div id="container">
+		
+			<?php
+				// action hook for placing content above #content
+				thematic_abovecontent();
+
+				// filter for manipulating the element that wraps the content 
+				echo apply_filters( 'thematic_open_id_content', '<div id="content">' . "\n" );
+			
+				// calling the widget area 'page-top'
+	            get_sidebar('page-top');
+	
+	            // start the loop
+	            while ( have_posts() ) : the_post();
+
+				// action hook for placing content above #post
+thematic_abovepost();
+?>
+
+<div id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
+
+<?php
+
+// creating the post header
+thematic_postheader();
+?>
+<?php
+						$queryObject = new WP_Query( 'post_type=acontece&posts_per_page=5' );
+						// The Loop!
+						if ($queryObject->have_posts()) {
+							?>
+							
+							<?php
+							while ($queryObject->have_posts()) {
+								$queryObject->the_post();
+								?>
+                                <div class="ex-alunos-home">
+								<div class="titulo-home-D8"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></div>
+                                <div class="img-chamada-exalunos"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(array (100,100)); ?></a></div>
+                                <div class="resumo-home-D8"><?php the_excerpt(); ?></div></div>
+                             
+                                <?php wp_reset_postdata(); ?>
+							<?php
+							}
+							?>
+							
+							<?php
+						}
+						?>
+<div class="entry-content">
+	
+						<?php
+	                    	the_content();
+	                    
+	                    	wp_link_pages( "\t\t\t\t\t<div class='page-link'>" . __( 'Pages: ', 'thematic' ), "</div>\n", 'number' );
+	                    
+	                    	edit_post_link( __( 'Edit', 'thematic' ), "\n\t\t\t\t\t\t" . '<span class="edit-link">' , '</span>' . "\n" );
+	                    ?>
+
+					</div><!-- .entry-content -->
+					
+				</div><!-- #post -->
+	
+			<?php
+				// action hook for inserting content below #post
+	        	thematic_belowpost();
+	        		        
+       			// action hook for calling the comments_template
+       			// thematic_comments_template();
+        		
+	        	// end loop
+        		endwhile;
+	        
+	        	// calling the widget area 'page-bottom'
+	        	get_sidebar( 'page-bottom' );
+	        ?>
+	
+			</div><!-- #content -->
+			
+			<?php 
+				// action hook for placing content below #content
+				thematic_belowcontent(); 
+			?> 
+			
+		</div><!-- #container -->
+
+<?php 
+    // action hook for placing content below #container
+    thematic_belowcontainer();
+
+    // calling the standard sidebar 
+    get_sidebar('divina-acontece');
+    
+    // calling footer.php
+    get_footer();
+?>
