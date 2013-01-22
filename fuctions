@@ -1,0 +1,187 @@
+<?php
+/*
+ * Custom Child Theme Functions
+ *
+ * This file's parent directory can be moved to the wp-content/themes directory 
+ * to allow this Child theme to be activated in the Appearance - Themes section of the WP-Admin.
+ *
+ * Included are a set of constants that can be defined to customize aspects of Thematic's 
+ * functionality, as well as a sample function that will add a home link to your menu.
+ * "Uncomment" or add more to cusomize the functionality of your Child Theme.
+ *
+ * More ideas can be found in the community documentation for Thematic
+ * @link http://docs.thematictheme.com
+ *
+ * @package ThematicSampleChildTheme
+ * @subpackage ThemeInit
+ */
+
+
+// Unleash the power of Thematic's dynamic classes
+// 
+// define('THEMATIC_COMPATIBLE_BODY_CLASS', true);
+// define('THEMATIC_COMPATIBLE_POST_CLASS', true);
+
+// Unleash the power of Thematic's comment form
+//
+// define('THEMATIC_COMPATIBLE_COMMENT_FORM', true);
+
+// Unleash the power of Thematic's feed link functions
+//
+// define('THEMATIC_COMPATIBLE_FEEDLINKS', true);
+
+
+// Adds a home link to your menu
+// http://codex.wordpress.org/Template_Tags/wp_page_menu
+//function childtheme_menu_args($args) {
+//    $args = array(
+//        'show_home' => 'Home',
+//        'sort_column' => 'menu_order',
+//        'menu_class' => 'menu',
+//        'echo' => false
+//    );
+//  return $args;
+//}
+//add_filter('wp_page_menu_args','childtheme_menu_args');
+function new_excerpt_length($length) {
+return 35;
+}
+add_filter('excerpt_length', 'new_excerpt_length');
+//Adiciona Favicon 
+function childtheme_favicon() { ?>
+	<link rel="shortcut icon" href="<?php echo bloginfo('stylesheet_directory') ?>/images/favicon.ico" />
+<?php }
+add_action('wp_head', 'childtheme_favicon');
+
+// remover sidebars originais
+function remove_widget_areas($content) {
+	unset($content['1st Subsidiary Aside']);
+	unset($content['2nd Subsidiary Aside']);
+	unset($content['3rd Subsidiary Aside']);
+	unset($content['Index Top']);
+	unset($content['Index Insert']);
+	unset($content['Index Bottom']);
+	unset($content['Single Top']);
+	unset($content['Single Insert']);
+	unset($content['Single Bottom']);
+	unset($content['Page Top']);
+	unset($content['Page Bottom']);
+	unset($content['Secondary Aside']);
+	return $content;
+}
+add_filter('thematic_widgetized_areas', 'remove_widget_areas');
+
+//Sidebars
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Ensino' ),
+  'id' => 'sidebar-ensino',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Escola' ),
+  'id' => 'sidebar-escola',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Projeto Integracao' ),
+  'id' => 'sidebar-projeto-integracao',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Vestibulares' ),
+  'id' => 'sidebar-vestibulares',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Instalacoes' ),
+  'id' => 'sidebar-instalacoes',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Blog' ),
+  'id' => 'sidebar-blog',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Divina Esportes' ),
+  'id' => 'sidebar-divina-esportes',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Divina Cultural' ),
+  'id' => 'sidebar-divina-cultural',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Imprensa' ),
+  'id' => 'sidebar-imprensa',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Contato' ),
+  'id' => 'sidebar-contato',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Ex-Alunos' ),
+  'id' => 'sidebar-ex-alunos',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Dialogos com a Familia' ),
+  'id' => 'sidebar-dialogos-familia',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Aos Pais' ),
+  'id' => 'sidebar-aos-pais',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
+register_sidebar(array(
+  'name' => __( 'Sidebar Divina Acontece' ),
+  'id' => 'sidebar-divina-acontece',
+  'description' => __( '' ),
+  'before_title' => '<h3>',
+  'after_title' => '</h3>'
+));
+
