@@ -1,0 +1,18 @@
+<?php
+/**
+ * Sidebar Divina Acontece Template
+ *
+ * …
+ * 
+ * @package Thematic
+ * @subpackage Templates
+ */?>
+
+<?php if ( is_sidebar_active('sidebar-divina-acontece') ) : ?>
+        <div id="primary" class="aside main-aside">
+        <div id="titulo-menu-interno"><div>Divina Acontece</div></div>
+          <ul class="xoxo">
+                <?php dynamic_sidebar('divina-acontece'); ?>
+            </ul>
+        </div><!-- #primary .widget-area -->
+<?php endif; ?>       
